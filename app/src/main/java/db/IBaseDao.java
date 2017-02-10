@@ -6,7 +6,7 @@ import java.util.List;
  * Created by chengkai on 2017/2/7.
  */
 
-public interface IBaseDao<T> {
+public interface IBaseDao<T> { // 创建分支
 
     long insert(T entity);
 
