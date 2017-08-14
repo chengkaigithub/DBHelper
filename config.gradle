@@ -1,5 +1,6 @@
 ext {
 
+    // android start
     COMPILE_SDK_VERSION = 24
     BUILD_TOOLS_VERSION = "25.0.2"
 
@@ -11,5 +12,11 @@ ext {
 
     GRADLE_VERSION = "2.3.3"
     BUTTERKNIFE_GRADLE_PLUGIN_VERSION = "8.5.1"
+    // android end
 
+    // dependencies start
+    APPCOMPAT_V7_VERSION = '24.2.1'
+    JUNIT_VERSION = '4.12'
+    ESPRESSO_CORE_VERSION = '2.2.2'
+    // dependencies end
 }
