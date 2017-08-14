@@ -1,22 +1,63 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "25.0.2"
+
+    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion BUILD_TOOLS_VERSION
+
     defaultConfig {
         applicationId "chengkai.suixingpay.com.dbhelper"
-        minSdkVersion 14
-        targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
+
+    buildTypes {
+
+        debug {
+            // buildConfigField 不支持低于 android 4.2
+            buildConfigField "String", "ENVIRONMENT", "\"http://test_environment_ip:port\""
+            resValue "string", "app_name", "dbhelpse_debug"
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            buildConfigField "String", "ENVIRONMENT", "\"https://release_environment\""
+            resValue "string", "app_name", "dbhelper_resrase"
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError true
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a'
+//            universalApk true
+        }
+    }
+
 }
 
 dependencies {
@@ -26,4 +67,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+//    compile fileTree('libs')
 }
