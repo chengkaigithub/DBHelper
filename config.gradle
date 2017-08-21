@@ -18,5 +18,6 @@ ext {
     APPCOMPAT_V7_VERSION = '24.2.1'
     JUNIT_VERSION = '4.12'
     ESPRESSO_CORE_VERSION = '2.2.2'
+    GLOBALCRASHHELPER_VERSION = '1.0.0'
     // dependencies end
 }

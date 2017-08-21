@@ -15,9 +15,29 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+//        // 添加常用文件夹作为仓库。可以在dependencies中添加本地文件夹中的文件
+//        flatDir {
+//            dirs 'aars'
+//        }
+
+//        maven {
+//            // 方式一
+//            url '../repo' // 可以添加本地仓库(路径为相对/绝对均可)
+//            // 方式二
+//            url 'https://......' // 私有仓库地址,需要用户名与密码
+//            credentials {
+//                // 应该从gradle.properties文件中读取下列用户名以及密码,更安全
+//                username 'username'
+//                passwore 'password'
+//            }
+//        }
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// 覆盖默认任务(重新定义)
+//defaultTasks 'clean', 'assembleDebug'
